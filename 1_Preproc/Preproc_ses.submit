@@ -1,0 +1,11 @@
+#!/bin/bash
+#SBATCH --time=50:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=8 # 8 MPI processes per node
+#SBATCH --mem-per-cpu=20GB # 20 GB RAM per Node
+
+module load gcc/12.3
+module load openmpi/4.1.5
+module load matlab/2023a
+echo "Running Matlab job for Subject id ${1}"
+matlab -nodisplay -nodesktop -nosplash -r "Preproc('${1}'),quit"
